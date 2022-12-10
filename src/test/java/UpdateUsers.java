@@ -68,7 +68,7 @@ public class UpdateUsers extends TestBase{
                         .body(partBody)
                         .contentType(ContentType.JSON)
                         .when()
-                        .patch(BASE_URL+users+"/{userId}")
+                        .put(BASE_URL+users+"/{userId}")
                         .then()
                         .statusCode(200)
                         .extract().response();
@@ -76,8 +76,9 @@ public class UpdateUsers extends TestBase{
         JsonPath jsonPath = response.jsonPath();
 
         Assert.assertEquals(jsonPath.get("name"), "Jan Kowalski");
-        //Assert.assertNull(jsonPath.get("email"));
-        Assert.assertEquals(jsonPath.get("email"), "Sincere@april.biz");
-        Assert.assertEquals(jsonPath.get("company.name"), "Romaguera-Crona");
+        Assert.assertNull(jsonPath.get("email"));
+        Assert.assertNull(jsonPath.get("company.name"));
+        //Assert.assertEquals(jsonPath.get("email"), "Sincere@april.biz");
+        //Assert.assertEquals(jsonPath.get("company.name"), "Romaguera-Crona");
     }
 }
