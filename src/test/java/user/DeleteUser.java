@@ -1,8 +1,11 @@
+package user;
+
+import base.TestBase;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class DeleteUser extends TestBase{
+public class DeleteUser extends TestBase {
     private String users = "/users";
 
     @Test

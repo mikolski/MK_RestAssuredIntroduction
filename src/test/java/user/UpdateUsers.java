@@ -1,3 +1,6 @@
+package user;
+
+import base.TestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -6,7 +9,8 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PatchUser extends TestBase{
+public class UpdateUsers extends TestBase {
+
     private String users = "/users";
 
     String fullBody = "{\n" +
@@ -41,15 +45,15 @@ public class PatchUser extends TestBase{
     public void shouldUpdatePostWithFullBody(){
         Response response =
 
-                given()
-                        .pathParam("userId","1")
-                        .body(fullBody)
-                        .contentType(ContentType.JSON)
-                        .when()
-                        .patch(BASE_URL+users+"/{userId}")
-                        .then()
-                        .statusCode(200)
-                        .extract().response();
+        given()
+                .pathParam("userId","1")
+                .body(fullBody)
+                .contentType(ContentType.JSON)
+                .when()
+                .put(BASE_URL+users+"/{userId}")
+                .then()
+                .statusCode(200)
+                .extract().response();
 
         JsonPath jsonPath = response.jsonPath();
 
@@ -67,7 +71,7 @@ public class PatchUser extends TestBase{
                         .body(partBody)
                         .contentType(ContentType.JSON)
                         .when()
-                        .patch(BASE_URL+users+"/{userId}")
+                        .put(BASE_URL+users+"/{userId}")
                         .then()
                         .statusCode(200)
                         .extract().response();
@@ -75,9 +79,9 @@ public class PatchUser extends TestBase{
         JsonPath jsonPath = response.jsonPath();
 
         Assert.assertEquals(jsonPath.get("name"), "Jan Kowalski");
-        //Assert.assertNull(jsonPath.get("email"));
-        //Assert.assertNull(jsonPath.get("company.name"));
-        Assert.assertEquals(jsonPath.get("email"), "Sincere@april.biz");
-        Assert.assertEquals(jsonPath.get("company.name"), "Romaguera-Crona");
+        Assert.assertNull(jsonPath.get("email"));
+        Assert.assertNull(jsonPath.get("company.name"));
+        //Assert.assertEquals(jsonPath.get("email"), "Sincere@april.biz");
+        //Assert.assertEquals(jsonPath.get("company.name"), "Romaguera-Crona");
     }
 }

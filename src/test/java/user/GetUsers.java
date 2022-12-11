@@ -1,10 +1,13 @@
+package user;
+
+import base.TestBase;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 
-public class GetUsers extends TestBase{
+public class GetUsers extends TestBase {
 
 private String users = "/users";
 

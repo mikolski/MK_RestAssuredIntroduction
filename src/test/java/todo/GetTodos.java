@@ -1,3 +1,6 @@
+package todo;
+
+import base.TestBase;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
